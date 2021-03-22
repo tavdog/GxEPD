@@ -1,15 +1,8 @@
-// class GxGDGDEW0102T4 : Display class for GDEW0213I5F e-Paper from Dalian Good Display Co., Ltd.: http://www.e-paper-display.com/products_detail/productId=397.html
+// class GxGDGDEW0102T4 : Display class for GDEW0102T4 e-Paper from Dalian Good Display Co., Ltd.: https://www.good-display.cn/product/207.html
 //
-// based on Demo Example from Good Display, available here: http://www.e-paper-display.com/download_detail/downloadsId=597.html
-// Controller: IL0373 : http://www.e-paper-display.com/download_detail/downloadsId=535.html
-//
-// Author : J-M Zingg
-//
-// Version : see library.properties
-//
-// License: GNU GENERAL PUBLIC LICENSE V3, see LICENSE
-//
-// Library: https://github.com/ZinggJM/GxEPD
+// based on Demo Example from Good Display, available here: https://www.good-display.cn/product/207.html
+// Controller: UC8175
+
 
 #include "GxGDGDEW0102T4.h"
 
@@ -351,29 +344,12 @@ void GxGDGDEW0102T4::powerDown()
 
 uint16_t GxGDGDEW0102T4::_setPartialRamArea(uint16_t x, uint16_t y, uint16_t xe, uint16_t ye)
 {
-#if 0
-    x &= 0xFFF8; // byte boundary
-    xe = (xe - 1) | 0x0007; // byte boundary - 1
-    IO.writeCommandTransaction(0x90); // partial window
-    //IO.writeDataTransaction(x / 256);
-    IO.writeDataTransaction(x % 256);
-    //IO.writeDataTransaction(xe / 256);
-    IO.writeDataTransaction(xe % 256);
-    IO.writeDataTransaction(y / 256);
-    IO.writeDataTransaction(y % 256);
-    IO.writeDataTransaction(ye / 256);
-    IO.writeDataTransaction(ye % 256);
-    IO.writeDataTransaction(0x01); // don't see any difference
-    //IO.writeDataTransaction(0x00); // don't see any difference
-    return (7 + xe - x) / 8; // number of bytes to transfer per line
-#else
     IO.writeCommandTransaction(0x90); // partial window
     IO.writeDataTransaction(x);
     IO.writeDataTransaction(xe);
     IO.writeDataTransaction(y);
     IO.writeDataTransaction(ye);
     IO.writeDataTransaction(0x01);
-#endif
 }
 
 void GxGDGDEW0102T4::_writeCommand(uint8_t command)

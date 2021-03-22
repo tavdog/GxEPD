@@ -1,15 +1,7 @@
-// class GxGDGDEW0102T4 : Display class for GDEW0213I5F e-Paper from Dalian Good Display Co., Ltd.: http://www.e-paper-display.com/products_detail/productId=397.html
+// class GxGDGDEW0102T4 : Display class for GDEW0102T4 e-Paper from Dalian Good Display Co., Ltd.: https://www.good-display.cn/product/207.html
 //
-// based on Demo Example from Good Display, available here: http://www.e-paper-display.com/download_detail/downloadsId=597.html
-// Controller: IL0373 : http://www.e-paper-display.com/download_detail/downloadsId=535.html
-//
-// Author : J-M Zingg
-//
-// Version : see library.properties
-//
-// License: GNU GENERAL PUBLIC LICENSE V3, see LICENSE
-//
-// Library: https://github.com/ZinggJM/GxEPD
+// based on Demo Example from Good Display, available here: https://www.good-display.cn/product/207.html
+// Controller: UC8175
 
 #ifndef _GxGDGDEW0102T4_H_
 #define _GxGDGDEW0102T4_H_
