@@ -13,6 +13,8 @@
 #include <boards.h>
 #include <GxEPD.h>
 
+// #include <GxGDGDEW0102T4/GxGDGDEW0102T4.h>   //1.02" b/w
+
 // #include <GxGDEH0154D67/GxGDEH0154D67.h>     // 1.54" b/w old panel
 
 // #include <GxDEPG0150BN/GxDEPG0150BN.h>       // 1.54" b/w form DKE GROUP
@@ -27,7 +29,9 @@
 //! The current LilyGo uses the ink screen version DEPG0213BN
 // #include <GxDEPG0213BN/GxDEPG0213BN.h>       // 2.13" b/w form DKE GROUP
 
-// #include <GxGDEM0213B74/GxGDEM0213B74.h>  // 2.13" b/w  form GoodDisplay 4-color
+// #include <GxGDEM0213B74/GxGDEM0213B74.h>     // 2.13" b/w  form GoodDisplay 4-color
+
+// #include <GxGDEW0213M21/GxGDEW0213M21.h>     // 2.13" b/w Ultra wide temperature
 
 // #include <GxGDEH029A1/GxGDEH029A1.h>         // 2.9" b/w
 // #include <GxQYEG0290BN/GxQYEG0290BN.h>       // 2.9" b/w new panel

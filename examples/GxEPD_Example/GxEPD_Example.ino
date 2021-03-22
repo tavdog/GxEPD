@@ -15,6 +15,8 @@
 #include <SD.h>
 #include <FS.h>
 
+// #include <GxGDGDEW0102T4/GxGDGDEW0102T4.h> //1.02" b/w
+
 // #include <GxGDEW0154Z04/GxGDEW0154Z04.h>  // 1.54" b/w/r 200x200
 // #include <GxGDEW0154Z17/GxGDEW0154Z17.h>  // 1.54" b/w/r 152x152
 // #include <GxGDEH0154D67/GxGDEH0154D67.h>  // 1.54" b/w
@@ -34,6 +36,8 @@
 // #include <GxDEPG0213BN/GxDEPG0213BN.h>    // 2.13" b/w  form DKE GROUP
 
 // #include <GxGDEM0213B74/GxGDEM0213B74.h>  // 2.13" b/w  form GoodDisplay 4-color
+
+// #include <GxGDEW0213M21/GxGDEW0213M21.h>  // 2.13"  b/w Ultra wide temperature
 
 // #include <GxDEPG0266BN/GxDEPG0266BN.h>    // 2.66" b/w  form DKE GROUP
 
@@ -70,6 +74,8 @@ SPIClass SDSPI(VSPI);
 #define _HAS_COLOR_
 #endif
 
+void showFont(const char name[], const GFXfont *f);
+void drawCornerTest(void);
 
 bool setupSDCard(void)
 {
