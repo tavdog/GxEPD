@@ -15,6 +15,8 @@
 #include <SD.h>
 #include <FS.h>
 
+// #include <GxGDGDEW0102T4/GxGDGDEW0102T4.h>   //1.02" b/w
+
 // #include <GxGDEH0154D67/GxGDEH0154D67.h>  // 1.54" b/w
 // #include <GxDEPG0150BN/GxDEPG0150BN.h>    // 1.54" b/w  form DKE GROUP
 
@@ -75,13 +77,21 @@ void setup(void)
 void loop()
 {
 // use asymmetric values for test
+#if defined(_GxGDGDEW0102T4_H_)
+    uint16_t box_x = 5;
+    uint16_t box_y = 5;
+    uint16_t box_w = 35;
+    uint16_t box_h = 15;
+    uint16_t cursor_y = box_y + box_h - 10;
+#else
     uint16_t box_x = 10;
     uint16_t box_y = 15;
     uint16_t box_w = 70;
     uint16_t box_h = 20;
     uint16_t cursor_y = box_y + box_h - 6;
-    float value = 13.95;
     display.setFont(&FreeMonoBold9pt7b);
+#endif
+    float value = 13.95;
     display.setTextColor(GxEPD_BLACK);
     display.setRotation(0);
     // draw background

@@ -269,10 +269,10 @@ void GxGDEW0102I4F::updateWindow(uint16_t x, uint16_t y, uint16_t w, uint16_t h,
     uint16_t ys_bx = GxGDEW0102I4F_HEIGHT - ye - 1;
     uint16_t ye_bx = GxGDEW0102I4F_HEIGHT - y - 1;
     _Init_Part(0x01);
+    _writeCommand(0x91);
     _SetRamArea(xs_d8, xe_d8, ye % 256, ye / 256, y % 256, y / 256); // X-source area,Y-gate area
-    _SetRamPointer(xs_d8, ye % 256, ye / 256); // set ram
-    _waitWhileBusy();
-    _writeCommand(0x13);
+    // _SetRamPointer(xs_d8, ye % 256, ye / 256); // set ram
+    _writeCommand(0x10);
     for (int16_t y1 = ys_bx; y1 <= ye_bx; y1++) {
         for (int16_t x1 = xs_d8; x1 <= xe_d8; x1++) {
             uint16_t idx = y1 * (GxGDEW0102I4F_WIDTH / 8) + x1;
@@ -280,12 +280,7 @@ void GxGDEW0102I4F::updateWindow(uint16_t x, uint16_t y, uint16_t w, uint16_t h,
             _writeData(~data);
         }
     }
-    _Update_Part();
-    delay(GxGDEW0102I4F_PU_DELAY);
     // update erase buffer
-    _SetRamArea(xs_d8, xe_d8, ye % 256, ye / 256, y % 256, y / 256); // X-source area,Y-gate area
-    _SetRamPointer(xs_d8, ye % 256, ye / 256); // set ram
-    _waitWhileBusy();
     _writeCommand(0x13);
     for (int16_t y1 = ys_bx; y1 <= ye_bx; y1++) {
         for (int16_t x1 = xs_d8; x1 <= xe_d8; x1++) {
@@ -295,6 +290,8 @@ void GxGDEW0102I4F::updateWindow(uint16_t x, uint16_t y, uint16_t w, uint16_t h,
         }
     }
     delay(GxGDEW0102I4F_PU_DELAY);
+    _writeCommand(0x12);
+    _waitWhileBusy();
 }
 
 void GxGDEW0102I4F::_writeToWindow(uint16_t xs, uint16_t ys, uint16_t xd, uint16_t yd, uint16_t w, uint16_t h)
@@ -332,7 +329,7 @@ void GxGDEW0102I4F::_writeToWindow(uint16_t xs, uint16_t ys, uint16_t xd, uint16
 
 void GxGDEW0102I4F::updateToWindow(uint16_t xs, uint16_t ys, uint16_t xd, uint16_t yd, uint16_t w, uint16_t h, bool using_rotation)
 {
-    
+
     if (using_rotation) {
         switch (getRotation()) {
         case 1:
@@ -419,7 +416,6 @@ void GxGDEW0102I4F::_waitWhileBusy(const char *comment)
 
 void GxGDEW0102I4F::_SetRamArea(uint8_t Xstart, uint8_t Xend, uint8_t Ystart, uint8_t Ystart1, uint8_t Yend, uint8_t Yend1)
 {
-    _writeCommand(0x91);
     _writeCommand(0x90);
     _writeData(Xstart);
     _writeData(Xend);
@@ -430,29 +426,18 @@ void GxGDEW0102I4F::_SetRamArea(uint8_t Xstart, uint8_t Xend, uint8_t Ystart, ui
 
 void GxGDEW0102I4F::_SetRamPointer(uint8_t addrX, uint8_t addrY, uint8_t addrY1)
 {
-    // _writeCommand(0x4e);
-    // _writeData(addrX);
-    // _writeCommand(0x4f);
-    // _writeData(addrY);
-    // _writeData(addrY1);
 }
-
-
 
 void GxGDEW0102I4F::_PowerOff(void)
 {
-    _writeCommand(0x02);
-    // _waitWhileBusy("_PowerOff");
 }
 
 void GxGDEW0102I4F::_reset(void)
 {
-    if (_rst >= 0) {
-        digitalWrite(_rst, 0);
-        delay(10);
-        digitalWrite(_rst, 1);
-        delay(10);
-    }
+    digitalWrite(_rst, 0);
+    delay(10);
+    digitalWrite(_rst, 1);
+    delay(10);
 }
 
 void GxGDEW0102I4F::_Init_Full(uint8_t em)
@@ -461,30 +446,39 @@ void GxGDEW0102I4F::_Init_Full(uint8_t em)
     _reset();
     _writeCommand(0xD2);
     _writeData(0x3F);
-    _writeCommand(0x00);
-    _writeData (0x67);                  
 
-    _writeCommand(0x01);             
+    _writeCommand(0x00);
+    _writeData (0x67);
+
+    _writeCommand(0x01);
     _writeData (0x03);
     _writeData (0x00);
     _writeData (0x2b);
     _writeData (0x2b);
+
     _writeCommand(0x06);
     _writeData(0x3f);
+
     _writeCommand(0x2A);
     _writeData(0x00);
     _writeData(0x00);
+
     _writeCommand(0x30);
     _writeData(0x13);
+
     _writeCommand(0x50);
     _writeData(0x57);
+
     _writeCommand(0x60);
     _writeData(0x22);
-    _writeCommand(0x61);           
-    _writeData (0x50);              
+
+    _writeCommand(0x61);
+    _writeData (0x50);
     _writeData (0x80);
+
     _writeCommand(0x82);
-    _writeData(0x12); 
+    _writeData(0x12);
+
     _writeCommand(0xe3);
     _writeData(0x33);
 
@@ -495,13 +489,15 @@ void GxGDEW0102I4F::_Init_Full(uint8_t em)
 void GxGDEW0102I4F::_Init_Part(uint8_t em)
 {
     _reset();
+
     _writeCommand(0xD2);
     _writeData(0x3F);
 
     _writeCommand(0x00);
-    _writeData (0x67);  
+    _writeData (0x67);  //LUT from registers.
+    //old= 0b0110 0111
 
-    _writeCommand(0x01);             
+    _writeCommand(0x01);
     _writeData (0x03);
     _writeData (0x00);
     _writeData (0x2b);
@@ -514,20 +510,25 @@ void GxGDEW0102I4F::_Init_Part(uint8_t em)
     _writeData(0x00);
     _writeData(0x00);
 
-    _writeCommand(0x30);
-    _writeData(0x05);
+    _writeCommand(0x30);// The command controls the clock frequency.
+    _writeData(0x05);   // 15.0 Hz
 
-    _writeCommand(0x50);
+    _writeCommand(0x50); //This command indicates the interval of VCOM and data output. When setting the vertical back porch, the total blanking will bekept (10 Hsync)
     _writeData(0xF2);
 
-    _writeCommand(0x60);
+    _writeCommand(0x60);    //This command defines non-overlap period of Gate and Source.
     _writeData(0x22);
 
-    _writeCommand(0x82);
+    _writeCommand(0x82); //This command sets VCOM_DC value.
     _writeData(0x00);
-
+    /*
+    * This command is set for saving power during refreshing period. If the output voltage of VCOM / Source is from negative to
+    * positive or from positive to negative, the power saving mechanism will be activated. The active period width is defined by the
+    * following two parameters.
+    * */
     _writeCommand(0xe3);
     _writeData(0x33);
+
     _writeCommandData(LUTDefault_part_w, sizeof(LUTDefault_part_w));
     _writeCommandData(LUTDefault_part_b, sizeof(LUTDefault_part_b));
 }
