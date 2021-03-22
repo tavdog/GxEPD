@@ -149,6 +149,33 @@
 // #define _HAS_SPEAKER_
 #define _HAS_SDCARD_
 
+
+#elif defined(LILYGO_T5_V102)
+
+#define EPD_MOSI                (21)
+#define EPD_MISO                (-1)
+#define EPD_SCLK                (22)
+#define EPD_CS                  (5)
+
+#define EPD_BUSY                (34)
+#define EPD_RSET                (4)
+#define EPD_DC                  (19)
+
+#define SDCARD_CS               (13)
+#define SDCARD_MOSI             (15)
+#define SDCARD_MISO             (2)
+#define SDCARD_SCLK             (14)
+
+#define BUTTON_1                (36)
+#define BUTTON_2                (39)
+#define BUTTONS                 {36,39}
+#define BUTTON_COUNT            (2)
+
+
+#define ADC_PIN                 (35)
+
+#define _HAS_ADC_DETECTED_
+#define _HAS_SDCARD_
 #else
 #error "Please select model !!!"
 #endif

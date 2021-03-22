@@ -350,6 +350,7 @@ uint16_t GxGDGDEW0102T4::_setPartialRamArea(uint16_t x, uint16_t y, uint16_t xe,
     IO.writeDataTransaction(y);
     IO.writeDataTransaction(ye);
     IO.writeDataTransaction(0x01);
+    return 0;
 }
 
 void GxGDGDEW0102T4::_writeCommand(uint8_t command)

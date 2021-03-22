@@ -111,6 +111,7 @@ public:
 #define GxEPD_HEIGHT GxGDGDEW0102T4_HEIGHT
 #define GxEPD_BitmapExamples <GxGDGDEW0102T4/BitmapExamples.h>
 #define GxEPD_BitmapExamplesQ "GxGDGDEW0102T4/BitmapExamples.h"
+#define GxEPD_ProductID       "1.02\""
 #endif
 
 #endif
