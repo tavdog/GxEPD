@@ -1,5 +1,5 @@
 /*
-    LilyGo Ink Screen Series
+    LilyGo Ink Screen Series Test
         - Created by Lewis he
 */
 
@@ -8,7 +8,7 @@
 // #define LILYGO_T5_V22
 // #define LILYGO_T5_V24
 // #define LILYGO_T5_V28
-// #define LILYGO_T5_V102
+#define LILYGO_T5_V102
 
 #include <boards.h>
 #include <GxEPD.h>
@@ -18,7 +18,7 @@
 
 using namespace         ace_button;
 
-// #include <GxGDGDEW0102T4/GxGDGDEW0102T4.h> //1.02" b/w
+#include <GxGDGDEW0102T4/GxGDGDEW0102T4.h> //1.02" b/w
 
 // #include <GxGDEW0154Z04/GxGDEW0154Z04.h>  // 1.54" b/w/r 200x200
 // #include <GxGDEW0154Z17/GxGDEW0154Z17.h>  // 1.54" b/w/r 152x152
@@ -72,9 +72,12 @@ GxIO_Class io(SPI,  EPD_CS, EPD_DC,  EPD_RSET);
 GxEPD_Class display(io, EPD_RSET, EPD_BUSY);
 
 AceButton btn1(BUTTON_1);
+#ifdef BUTTON_2
 AceButton btn2(BUTTON_2);
+#endif
+#ifdef BUTTON_3
 AceButton btn3(BUTTON_3);
-
+#endif
 bool rlst = false;
 
 #if defined(_HAS_SDCARD_) && !defined(_USE_SHARED_SPI_BUS_)
@@ -162,12 +165,16 @@ static void aceButtonHandleEventCb(AceButton *b, uint8_t event, uint8_t state)
     case BUTTON_1:
         event == AceButton::kEventClicked ? GxepdPage0() : EnterSleep();
         break;
+#ifdef BUTTON_2
     case BUTTON_2:
         GxepdPage1();
         break;
+#endif
+#ifdef BUTTON_3
     case BUTTON_3:
         GxepdPage2();
         break;
+#endif
     default:
         break;
     }
@@ -190,19 +197,21 @@ void setup()
     buttonConfig->setFeature(ButtonConfig::kFeatureClick);
     buttonConfig->setFeature(ButtonConfig::kFeatureLongPress);
 
+#ifdef BUTTON_2
     pinMode(BUTTON_2, INPUT);
     btn2.init(BUTTON_2);
     buttonConfig = btn2.getButtonConfig();
     buttonConfig->setEventHandler(aceButtonHandleEventCb);
     buttonConfig->setFeature(ButtonConfig::kFeatureClick);
+#endif
 
-
+#ifdef BUTTON_3
     pinMode(BUTTON_3, INPUT);
     btn3.init(BUTTON_3);
     buttonConfig = btn3.getButtonConfig();
     buttonConfig->setEventHandler(aceButtonHandleEventCb);
     buttonConfig->setFeature(ButtonConfig::kFeatureClick);
-
+#endif
 
     testSpeaker();
 
@@ -214,8 +223,12 @@ void setup()
 void loop()
 {
     btn1.check();
+#ifdef BUTTON_2
     btn2.check();
+#endif
+#ifdef BUTTON_3
     btn3.check();
+#endif
 }
 
 void EnterSleep()
