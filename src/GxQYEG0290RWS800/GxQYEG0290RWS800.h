@@ -119,6 +119,7 @@ public:
 #define GxEPD_HEIGHT GxQYEG0290RWS800_HEIGHT
 #define GxEPD_BitmapExamples <GxQYEG0290RWS800/BitmapExamples.h>
 #define GxEPD_BitmapExamplesQ "GxQYEG0290RWS800/BitmapExamples.h"
+#define GxEPD_ProductID       "2.9\""
 #endif
 
 #endif
