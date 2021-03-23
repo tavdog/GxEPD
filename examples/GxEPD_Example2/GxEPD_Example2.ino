@@ -8,7 +8,7 @@
 // #define LILYGO_T5_V22
 // #define LILYGO_T5_V24
 // #define LILYGO_T5_V28
-#define LILYGO_T5_V102
+// #define LILYGO_T5_V102
 
 #include <boards.h>
 #include <GxEPD.h>
@@ -18,7 +18,7 @@
 
 using namespace         ace_button;
 
-#include <GxGDGDEW0102T4/GxGDGDEW0102T4.h> //1.02" b/w
+// #include <GxGDGDEW0102T4/GxGDGDEW0102T4.h> //1.02" b/w
 
 // #include <GxGDEW0154Z04/GxGDEW0154Z04.h>  // 1.54" b/w/r 200x200
 // #include <GxGDEW0154Z17/GxGDEW0154Z17.h>  // 1.54" b/w/r 152x152
