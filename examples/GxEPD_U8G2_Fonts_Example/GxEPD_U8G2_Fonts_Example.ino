@@ -8,7 +8,7 @@
 // #define LILYGO_T5_V22
 // #define LILYGO_T5_V24
 // #define LILYGO_T5_V28
-
+// #define LILYGO_T5_V266
 
 #include <boards.h>
 #include <GxEPD.h>
