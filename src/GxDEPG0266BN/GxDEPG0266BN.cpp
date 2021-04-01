@@ -340,9 +340,14 @@ void GxDEPG0266BN::updateToWindow(uint16_t xs, uint16_t ys, uint16_t xd, uint16_
 void GxDEPG0266BN::powerDown()
 {
     _using_partial_mode = false;
+    _waitWhileBusy(" ", 10000);
+    _writeCommand(0x22);
+    _writeData(0x03);
+    _writeCommand(0x20);
+    _waitWhileBusy(" ", 10000);
     _writeCommand(0x10);
     _writeData(0x01);
-    _PowerOff();
+    // _PowerOff();
 }
 
 void GxDEPG0266BN::_writeCommand(uint8_t command)
