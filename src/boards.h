@@ -168,8 +168,9 @@
 
 #define BUTTON_1                (36)
 #define BUTTON_2                (39)
-#define BUTTONS                 {36,39}
-#define BUTTON_COUNT            (2)
+#define BUTTON_3                (0u)
+#define BUTTONS                 {36,39,0}
+#define BUTTON_COUNT            (3)
 
 
 #define ADC_PIN                 (35)
