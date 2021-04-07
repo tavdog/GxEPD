@@ -10,14 +10,16 @@
 // #define LILYGO_T5_V28
 // #define LILYGO_T5_V102
 // #define LILYGO_T5_V266
+// #define LILYGO_EPD_DISPLAY      //Depend  https://github.com/adafruit/Adafruit_NeoPixel
 
 #include <boards.h>
 #include <GxEPD.h>
 #include <SD.h>
 #include <FS.h>
 
-#if defined(LILYGO_T5_V102)
+#if defined(LILYGO_T5_V102) || defined(LILYGO_EPD_DISPLAY)
 #include <GxGDGDEW0102T4/GxGDGDEW0102T4.h> //1.02" b/w
+#include <Adafruit_NeoPixel.h>             //Depend  https://github.com/adafruit/Adafruit_NeoPixel
 #elif defined(LILYGO_T5_V266)
 #include <GxDEPG0266BN/GxDEPG0266BN.h>    // 2.66" b/w   form DKE GROUP
 #elif defined(LILYGO_T5_V213)
@@ -68,6 +70,11 @@ SPIClass SDSPI(VSPI);
 #define _HAS_COLOR_
 #endif
 
+#if defined(LILYGO_EPD_DISPLAY)
+Adafruit_NeoPixel strip(RGB_STRIP_COUNT, RGB_STRIP_PIN, NEO_GRBW + NEO_KHZ800);
+#endif /*LILYGO_EPD_DISPLAY*/
+
+
 void showFont(const char name[], const GFXfont *f);
 void drawCornerTest(void);
 
@@ -79,6 +86,7 @@ bool setupSDCard(void)
 #elif defined(_HAS_SDCARD_)
     return SD.begin(SDCARD_CS);
 #endif
+    return false;
 }
 
 
@@ -139,6 +147,26 @@ void setup()
     Serial.println();
     Serial.println("setup");
 
+#if defined(LILYGO_EPD_DISPLAY)
+    pinMode(EPD_POWER_ENABLE, OUTPUT);
+    digitalWrite(EPD_POWER_ENABLE, HIGH);
+    delay(50);
+    // strip test
+    strip.begin();
+    strip.show();
+    strip.setBrightness(200);
+    int i = 0;
+    while (i < 5) {
+        uint32_t color[] = {0xFF0000, 0x00FF00, 0x0000FF, 0x000000};
+        strip.setPixelColor(0, color[i]);
+        strip.show();
+        delay(1000);
+        i++;
+    }
+    strip.setPixelColor(0, 0);
+    strip.show();
+#endif /*LILYGO_EPD_DISPLAY*/
+
     SPI.begin(EPD_SCLK, EPD_MISO, EPD_MOSI);
 
     display.init();
@@ -180,7 +208,7 @@ void setup()
 
     display.update();
 
-    delay(10000);
+    delay(1000);
 
 }
 
@@ -189,7 +217,6 @@ void loop()
     drawCornerTest();
 
     int i = 0;
-
     while (i < 4) {
         display.setRotation(i);
         showFont("FreeMonoBold9pt7b", &FreeMonoBold9pt7b);

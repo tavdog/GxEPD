@@ -10,14 +10,20 @@
 // #define LILYGO_T5_V28
 // #define LILYGO_T5_V102
 // #define LILYGO_T5_V266
+// #define LILYGO_EPD_DISPLAY
 
 #include <boards.h>
 #include <GxEPD.h>
 #include <SD.h>
 #include <FS.h>
 
-#ifdef LILYGO_T5_V102
-#include <GxGDGDEW0102T4/GxGDGDEW0102T4.h>    //1.02" b/w 80x128 , form good display
+
+#if defined(LILYGO_T5_V102) || defined(LILYGO_EPD_DISPLAY)
+#include <GxGDGDEW0102T4/GxGDGDEW0102T4.h> //1.02" b/w
+#elif defined(LILYGO_T5_V266)
+#include <GxDEPG0266BN/GxDEPG0266BN.h>    // 2.66" b/w   form DKE GROUP
+#elif defined(LILYGO_T5_V213)
+#include <GxDEPG0213BN/GxDEPG0213BN.h>    // 2.13" b/w  form DKE GROUP
 #else
 // #include <GxGDGDEW0102T4/GxGDGDEW0102T4.h> //1.02" b/w 80x128 , form good display
 

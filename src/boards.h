@@ -210,6 +210,29 @@
 #define _HAS_LED_
 #define _HAS_SDCARD_
 
+#elif defined(LILYGO_EPD_DISPLAY)
+
+#define EPD_MOSI                (21)
+#define EPD_MISO                (-1)
+#define EPD_SCLK                (22)
+#define EPD_CS                  (5)
+
+#define EPD_BUSY                (18)
+#define EPD_RSET                (23)
+#define EPD_DC                  (19)
+
+#define EPD_POWER_ENABLE        (14)
+
+#define BUTTON_1                (35)
+#define BUTTON_COUNT            (1)
+
+#define ADC_PIN                 (35)
+#define RGB_STRIP_PIN           (4)
+#define RGB_STRIP_COUNT         (1)
+
+#define _HAS_ADC_DETECTED_
+#define _HAS_POWER_CONTROL_
+#define _HAS_RGB_PIXEL_
 #else
 #error "Please select model !!!"
 #endif
