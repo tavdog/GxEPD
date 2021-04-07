@@ -76,6 +76,12 @@ void setup(void)
     Serial.begin(115200);
     Serial.println();
     Serial.println("setup");
+
+#if defined(LILYGO_EPD_DISPLAY)
+    pinMode(EPD_POWER_ENABLE, OUTPUT);
+    digitalWrite(EPD_POWER_ENABLE, HIGH);
+#endif /*LILYGO_EPD_DISPLAY*/
+
     SPI.begin(EPD_SCLK, EPD_MISO, EPD_MOSI);
     display.init(); // enable diagnostic output on Serial
     Serial.println("setup done");
