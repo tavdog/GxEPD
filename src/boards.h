@@ -233,6 +233,38 @@
 #define _HAS_ADC_DETECTED_
 #define _HAS_POWER_CONTROL_
 #define _HAS_RGB_PIXEL_
+
+#elif defined(LILYGO_EPD_DISPLAY_154)
+
+
+#define EPD_MOSI                (13)
+#define EPD_MISO                (-1)
+#define EPD_SCLK                (14)
+#define EPD_CS                  (15)
+
+#define EPD_BUSY                (16)
+#define EPD_RSET                (17)
+#define EPD_DC                  (2)
+#define EPD_BACKLIGHT_PIN       (0)
+
+#define EPD_POWER_ENABLE        (5)
+
+#define BUTTON_1                (35)
+#define BUTTON_COUNT            (1)
+
+#define ADC_PIN                 (34)
+#define MOTOR_PIN               (4)
+
+#define GPS_TX_PIN              (22)
+#define GPS_RX_PIN              (21)
+#define GPS_1PPS_PIN            (19)
+#define GPS_RESET_PIN           (23)
+#define GPS_WAKEUP_PIN          (18)
+
+#define _HAS_ADC_DETECTED_
+#define _HAS_POWER_CONTROL_
+#define _HAS_GPS_
+
 #else
 #error "Please select model !!!"
 #endif
