@@ -24,7 +24,7 @@
 #include <GxIO/GxIO_SPI/GxIO_SPI.h>
 #include <GxIO/GxIO.h>
 #include <WiFi.h>
-#include <TinyGPS++.h>
+#include <TinyGPS++.h>          // Depend https://github.com/mikalhart/TinyGPSPlus
 
 GxIO_Class      io(SPI,  EPD_CS, EPD_DC,  EPD_RSET);
 GxEPD_Class     display(io, EPD_RSET, EPD_BUSY);
