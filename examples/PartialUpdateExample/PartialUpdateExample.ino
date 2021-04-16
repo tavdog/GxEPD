@@ -26,8 +26,8 @@
 #elif defined(LILYGO_T5_V213)
 #include <GxDEPG0213BN/GxDEPG0213BN.h>    // 2.13" b/w  form DKE GROUP
 #else
+// #include <GxDEPG0097BW/GxDEPG0097BW.h>     // 0.97" b/w  form DKE GROUP
 // #include <GxGDGDEW0102T4/GxGDGDEW0102T4.h> //1.02" b/w 80x128 , form good display
-
 // #include <GxGDEW0154Z04/GxGDEW0154Z04.h>  // 1.54"  b/w/r 200x200 , form good display
 // #include <GxGDEW0154Z17/GxGDEW0154Z17.h>  // 1.54"  b/w/r 152x152 , form good display
 // #include <GxGDEH0154D67/GxGDEH0154D67.h>  // 1.54"  b/w   , form good display
