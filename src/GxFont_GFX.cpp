@@ -65,10 +65,10 @@ void GxFont_GFX::setFont(const uint8_t *font)
   _U8G2_FONTS_GFX.setFont(font);
 }
 
-int16_t GxFont_GFX::getUTF8Width(const char *str)
-{
- return _U8G2_FONTS_GFX.getUTF8Width(str);
-}
+// int16_t GxFont_GFX::getUTF8Width(const char *str)
+// {
+//  return _U8G2_FONTS_GFX.getUTF8Width(str);
+// }
 
 #endif
 
@@ -282,10 +282,10 @@ int16_t GxFont_GFX::drawUTF8(int16_t x, int16_t y, const char *str)
   return ((_font_gfx == U8g2_for_Adafruit_GFX_font_gfx) ? _U8G2_FONTS_GFX.drawUTF8(x, y, str) : 0);
 }
 
-int16_t GxFont_GFX::getUTF8Width(const char *str)
-{
-  return ((_font_gfx == U8g2_for_Adafruit_GFX_font_gfx) ? _U8G2_FONTS_GFX.getUTF8Width(str) : 0);
-}
+// int16_t GxFont_GFX::getUTF8Width(const char *str)
+// {
+//   return ((_font_gfx == U8g2_for_Adafruit_GFX_font_gfx) ? _U8G2_FONTS_GFX.getUTF8Width(str) : 0);
+// }
 
 uint16_t GxFont_GFX::utf8_next(uint8_t b)
 {
